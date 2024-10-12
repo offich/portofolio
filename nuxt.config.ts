@@ -28,6 +28,7 @@ export default defineNuxtConfig({
     preset: 'cloudflare-pages',
 
     prerender: {
+      autoSubfolderIndex: true,
       routes: getContentRoutes(),
     },
   },
@@ -40,7 +41,13 @@ export default defineNuxtConfig({
     dirs: [],
   },
 
-  modules: ['@nuxt/content', '@nuxt/ui', '@nuxt/image', '@nuxt/eslint'],
+  modules: [
+    '@nuxt/content',
+    '@nuxt/ui',
+    '@nuxt/image',
+    '@nuxt/eslint',
+    '@nuxtjs/device',
+  ],
 
   eslint: {
     config: {
