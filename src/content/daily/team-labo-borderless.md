@@ -1,6 +1,5 @@
 ---
 title: チームラボボーダレスに行きました
-draft: true
 ---
 
 ## これ何
@@ -8,3 +7,6 @@ draft: true
 チームラボボーダレスに行きました。
 
 ボーダレスというのがあるみたいだけど、どうやら大阪、豊洲にあるみたいだ。
+
+::EmbedLink{to="https://www.teamlab.art/jp/e/tokyo"}
+::

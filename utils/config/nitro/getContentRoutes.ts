@@ -6,8 +6,8 @@ import { parseFrontMatter } from 'remark-mdc'
 import { per, categoryUrlParamsMap } from '../../../constant/post'
 
 const getFrontMatter = (markdownPath: string): { categories: string[], draft: boolean } => {
-  const { data: frontmatter } = parseFrontMatter(readFileSync(markdownPath, 'utf8'))
-  const { categories, draft } = frontmatter
+  const data = parseFrontMatter(readFileSync(markdownPath, 'utf8'))
+  const { categories, draft } = data.data
   return { categories: categories || [], draft }
 }
 
