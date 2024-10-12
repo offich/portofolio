@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare",
     "prepare": "nuxt prepare",
     "module:add": "nuxi module add",
-    "deploy:preview": "pnpm run generate && wrangler pages deploy --project-name=portofolio dist/",
+    "deploy:preview": "pnpm run generate && wrangler pages deploy --branch $(git branch --show-current) --project-name=portofolio dist/",
     "deploy:local": "pnpm run generate && wrangler pages dev dist/",
     "lint": "npm run lint:eslint && npm run lint:markdown && npm run lint:text",
     "lint:eslint": "eslint .",
