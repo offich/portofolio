@@ -3,7 +3,7 @@ title: offich
 description: ハンドルネームを offich にしました
 categories: ['Daily']
 publishedAt: '2024-10-04'
-updatedAt: '2024-10-04'
+updatedAt: '2024-10-16'
 ---
 
 新しいハンドルネームをずっと考えていたが、やっとこれかなという決められた。
