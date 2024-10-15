@@ -1,6 +1,6 @@
 ---
-title: offich
-description: ハンドルネームを offich にしました
+title: ハンドルネームを offich にしました
+description: ハンドルネームを offich にしたので、その経緯をまとめる
 categories: ['Daily']
 publishedAt: '2024-10-04'
 updatedAt: '2024-10-16'
