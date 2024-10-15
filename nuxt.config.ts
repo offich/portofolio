@@ -49,6 +49,14 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
   ],
 
+  runtimeConfig: {
+    apiDomain: 'http://localhost:8789',
+
+    public: {
+      apiDomain: 'http://localhost:8789',
+    },
+  },
+
   eslint: {
     config: {
       stylistic: {
@@ -63,15 +71,7 @@ export default defineNuxtConfig({
     },
   },
 
-  routeRules: {
-    '/': { prerender: true },
-  },
-
   srcDir: 'src', // プロジェクト全体の設定ファイルと nuxt 関連のファイルを混ぜないようにするため
-
-  ui: {
-    global: true,
-  },
 
   content: {
     markdown: {

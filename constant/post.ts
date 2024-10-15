@@ -8,6 +8,7 @@ export const categoryUrlParamsMap: Record<string, string> = {
   'Google App Scripts': 'googleappscripts',
   ElasticSearch: 'elasticsearch',
   東海オンエア: 'tokaionair',
+  チームラボ: 'teamlabo',
   YouTube: 'youtube',
 }
 

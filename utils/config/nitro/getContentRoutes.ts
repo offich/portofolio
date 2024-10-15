@@ -72,5 +72,5 @@ export const getContentRoutes = (): string[] => {
     contentRoutes.push(...categoryPageRoutes)
   }
 
-  return ['/sitemap.xml', ...postRoutes, ...contentRoutes]
+  return ['/', '/time', '/sitemap.xml', ...postRoutes, ...contentRoutes]
 }
