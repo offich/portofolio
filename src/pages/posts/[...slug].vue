@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { queryContent, useRoute, useAsyncData, navigateTo, computed, definePageMeta, useSeoMeta } from '#imports'
+import type { TocLink } from '@nuxt/content'
 import { withoutTrailingSlash } from 'ufo'
 
 import PostSurround from '~/components/post/PostSurround.vue'
@@ -40,6 +41,11 @@ const { data: surround } = await useAsyncData(
   },
   { default: () => [] },
 )
+
+const tocLinks = computed<TocLink[]>(() => {
+  if (!page.value?.body?.toc) return []
+  return page.value.body.toc.links
+})
 
 const hasDatetime = computed(() => {
   return page.value?.publishedAt || page.value?.updatedAt
@@ -92,16 +98,19 @@ const hasDatetime = computed(() => {
 
     <div
       v-if="page.body"
-      class="block pc:flex gap-2"
+      class="block pc:flex"
+      :class="tocLinks.length > 0 ? 'gap-2' : 'gap-0'"
     >
       <ContentRenderer
         :value="page"
       />
 
-      <div class="hidden pc:block w-1/4">
+      <div
+        v-if="tocLinks.length > 0"
+        class="hidden pc:block w-1/4"
+      >
         <TableOfPost
-          v-if="page.body.toc?.links"
-          :links="page.body.toc.links"
+          :links="tocLinks"
           class="py-0 pc:py-2"
         />
       </div>
