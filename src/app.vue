@@ -11,6 +11,8 @@ useHead({
 </script>
 
 <template>
+  <NuxtLoadingIndicator color="#e2e8f0" /> <!-- color gray 200 -->
+
   <div class="bg-white dark:bg-gray-900">
     <NuxtLayout>
       <AppHeader />
