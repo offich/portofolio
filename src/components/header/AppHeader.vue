@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { useDevice } from '#imports'
-
 import ColorModeToggle from '~/components/header/ColorModeToggle.vue'
-
-const device = useDevice()
 </script>
 
 <template>
@@ -24,11 +20,21 @@ const device = useDevice()
           to="/about"
           color="gray"
           variant="ghost"
-          class="p-0.5"
+          class="p-0.5 inline-flex pc:hidden"
+          size="2xs"
+          :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
+        />
+
+        <UButton
+          icon="i-heroicons-user-circle"
+          to="/about"
+          color="gray"
+          variant="ghost"
+          class="p-0.5 pc:inline-flex hidden"
           size="2xs"
           :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
         >
-          {{ device.isMobile ? '' : 'About' }}
+          About
         </UButton>
 
         <UButton
@@ -36,11 +42,21 @@ const device = useDevice()
           to="/music"
           color="gray"
           variant="ghost"
-          class="p-0.5"
+          class="p-0.5 inline-flex pc:hidden"
+          size="2xs"
+          :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
+        />
+
+        <UButton
+          icon="i-heroicons-musical-note"
+          to="/music"
+          color="gray"
+          variant="ghost"
+          class="p-0.5 pc:inline-flex hidden"
           size="2xs"
           :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
         >
-          {{ device.isMobile ? '' : 'Music' }}
+          Music
         </UButton>
 
         <UButton
@@ -48,11 +64,21 @@ const device = useDevice()
           to="/bartender"
           color="gray"
           variant="ghost"
-          class="p-0.5"
+          class="p-0.5 inline-flex pc:hidden"
+          size="2xs"
+          :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
+        />
+
+        <UButton
+          icon="i-heroicons-funnel"
+          to="/bartender"
+          color="gray"
+          variant="ghost"
+          class="p-0.5 pc:inline-flex hidden"
           size="2xs"
           :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
         >
-          {{ device.isMobile ? '' : 'Bartender' }}
+          Bartender
         </UButton>
 
         <UButton
@@ -60,11 +86,21 @@ const device = useDevice()
           to="/posts/1"
           color="gray"
           variant="ghost"
-          class="p-0.5"
+          class="p-0.5 inline-flex pc:hidden"
+          size="2xs"
+          :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
+        />
+
+        <UButton
+          icon="i-heroicons-document"
+          to="/posts/1"
+          color="gray"
+          variant="ghost"
+          class="p-0.5 pc:inline-flex hidden"
           size="2xs"
           :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
         >
-          {{ device.isMobile ? '' : 'Posts' }}
+          Posts
         </UButton>
 
         <div class="w-6 h-3">
