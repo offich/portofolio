@@ -1,11 +1,12 @@
 name: 'deploy-preview'
 
-workflow_dispatch:
-  inputs:
-    branche:
-      description: "Set the branch to build."
-      required: true
-      default: "main"
+on:
+  workflow_dispatch:
+    inputs:
+      branche:
+        description: "Set the branch to build."
+        required: true
+        default: "main"
 
 jobs:
   deploy:
