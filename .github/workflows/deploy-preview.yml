@@ -1,0 +1,40 @@
+name: 'deploy-preview'
+
+workflow_dispatch:
+  inputs:
+    branche:
+      description: "Set the branch to build."
+      required: true
+      default: "main"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: ${{ github.event.inputs.branche }}
+
+      - run: corepack enable
+
+      - name: setup node
+        uses: actions/setup-node@v4.0.3
+        with:
+          node-version-file: '.node-version'
+          cache: 'pnpm'
+          cache-dependency-path: './pnpm-lock.yaml'
+
+      - run: pnpm install
+
+      - run: pnpm run generate
+
+      - name: Build & Deploy Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --branch ${{ github.event.inputs.branche }} --project-name=portofolio
