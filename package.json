@@ -6,6 +6,7 @@
     "build": "nuxt build",
     "dev": "concurrently --kill-others \"pnpm run dev:functions --port=8789\" \"nuxt dev\"",
     "generate": "concurrently --kill-others \"pnpm run dev:functions --port=8789\" \"sleep 2 && nuxt generate --dotenv env/.env.staging\"",
+    "nuxt:generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "prepare": "nuxt prepare",

@@ -31,7 +31,11 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm run generate
+      - name: generate
+        run: |
+          pnpm run dev:functions --port=8789 &
+          sleep 2
+          pnpm run nuxt:generate
 
       - name: Build & Deploy Worker
         uses: cloudflare/wrangler-action@v3
