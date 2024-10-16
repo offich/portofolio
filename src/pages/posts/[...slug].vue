@@ -3,6 +3,7 @@ import { queryContent, useRoute, useAsyncData, navigateTo, computed, definePageM
 import type { TocLink } from '@nuxt/content'
 import { withoutTrailingSlash } from 'ufo'
 
+import ContentDivider from '~/components/content/ContentDivider.vue'
 import PostSurround from '~/components/post/PostSurround.vue'
 import TableOfPost from '~/components/post/TableOfPost.vue'
 import { toPathString } from '~/utils/post/category'
@@ -94,7 +95,7 @@ const hasDatetime = computed(() => {
       </div>
     </div>
 
-    <UDivider class="mb-2" />
+    <ContentDivider class="mb-2" />
 
     <div
       v-if="page.body"
@@ -116,7 +117,7 @@ const hasDatetime = computed(() => {
       </div>
     </div>
 
-    <UDivider
+    <ContentDivider
       v-if="surround"
       class="mt-4 mb-6"
     />
