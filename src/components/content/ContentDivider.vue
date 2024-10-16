@@ -1,3 +1,6 @@
 <template>
-  <UDivider size="xs" />
+  <UDivider
+    size="xs"
+    role="separator"
+  />
 </template>
