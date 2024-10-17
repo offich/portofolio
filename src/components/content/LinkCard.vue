@@ -33,7 +33,7 @@ const { data } = await useAsyncData<{ metadata: SiteMetadata | null }>(`embed-${
 <template>
   <a
     v-if="data"
-    :href="props.url"
+    :href="url"
     class="w-full rounded-xl h-15 not-prose rounded-xl ring-1 ring-gray-200 dark:ring-gray-800 gap-1 flex shadow transition-shadow duration-200"
   >
     <div class="p-2 flex-1 overflow-hidden flex flex-col justify-center">
