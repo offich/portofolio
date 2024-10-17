@@ -9,6 +9,7 @@ export const categoryUrlParamsMap: Record<string, string> = {
   ElasticSearch: 'elasticsearch',
   東海オンエア: 'tokaionair',
   YouTube: 'youtube',
+  チームラボ: 'teamlab',
 }
 
 export const urlParamsCategoryMap: Record<string, string> = Object.keys(categoryUrlParamsMap)
