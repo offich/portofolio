@@ -5,6 +5,7 @@ import { userAgent } from '~/const'
 export type SiteMetadata = {
   url: string
   title: string | null
+  description: string | null
   imageUrl: string | null
 }
 
@@ -24,7 +25,7 @@ export const onRequest: PagesFunction = async (context) => {
     }
 
     const html = await response.text()
-    const metadata: SiteMetadata = { url, title: null, imageUrl: null }
+    const metadata: SiteMetadata = { url, title: null, description: null, imageUrl: null }
     const loaded = load(html)
 
     const metaTags = loaded('meta')
@@ -34,6 +35,10 @@ export const onRequest: PagesFunction = async (context) => {
 
       if (property === 'og:title') {
         metadata.title = meta.attribs.content || null
+      }
+
+      if (property === 'og:description') {
+        metadata.description = meta.attribs.content || null
       }
 
       if (property === 'og:image') {
