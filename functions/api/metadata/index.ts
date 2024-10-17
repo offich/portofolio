@@ -1,5 +1,7 @@
 import { load } from 'cheerio'
 
+import { userAgent } from '~/const'
+
 export type SiteMetadata = {
   url: string
   title: string | null
@@ -14,9 +16,7 @@ export const onRequest: PagesFunction = async (context) => {
     const response = await fetch(url,
       {
         method: 'get',
-        headers: {
-          'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
-        },
+        headers: { 'user-agent': userAgent },
       })
 
     if (!response.ok) {

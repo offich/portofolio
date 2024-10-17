@@ -5,5 +5,10 @@
     "lib": ["esnext"],
     "types": ["@cloudflare/workers-types"],
     "moduleResolution": "Bundler",
+    "paths": {
+      "~/*": [
+        "../functions/*"
+      ],
+    }
   }
 }
