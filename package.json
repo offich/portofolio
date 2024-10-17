@@ -12,6 +12,7 @@
     "module:add": "nuxi module add",
     "deploy:preview": "pnpm run generate && wrangler pages deploy --branch $(git branch --show-current) --project-name=portofolio dist/",
     "deploy:local": "pnpm run generate && wrangler pages dev dist/",
+    "dev:functions": "wrangler pages dev functions",
     "lint": "npm run lint:eslint && npm run lint:markdown && npm run lint:text",
     "lint:eslint": "eslint .",
     "lint:markdown": "markdownlint-cli2 src/content/**/*.md",
