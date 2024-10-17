@@ -49,6 +49,14 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
   ],
 
+  runtimeConfig: {
+    apiDomain: 'http://localhost:8789',
+
+    public: {
+      apiDomain: 'http://localhost:8789',
+    },
+  },
+
   eslint: {
     config: {
       stylistic: {

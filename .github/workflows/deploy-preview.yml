@@ -1,18 +1,24 @@
-name: deploy
+name: 'deploy-preview'
 
 on:
-  push:
-    branches:
-      - release
+  workflow_dispatch:
+    inputs:
+      branche:
+        description: "Set the branch to build."
+        required: true
+        default: "main"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    timeout-minutes: 60
+    timeout-minutes: 15
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: ${{ github.event.inputs.branche }}
 
       - run: corepack enable
 
@@ -32,4 +38,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=portofolio
+          command: pages deploy dist --branch ${{ github.event.inputs.branche }} --project-name=portofolio
