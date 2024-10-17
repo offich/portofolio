@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useAsyncData, useFetch, useRuntimeConfig } from '#imports'
+import { computed, ref, useAsyncData, useFetch, useRuntimeConfig } from '#imports'
 
 export type SiteMetadata = {
   url: string
@@ -28,6 +28,11 @@ const { data } = await useAsyncData<{ metadata: SiteMetadata | null }>(`embed-${
   const { data } = await useFetch<{ metadata: SiteMetadata | null }>(`${apiDomain.value}/api/metadata`, { query: { url: props.url } })
   return { metadata: data.value ? data.value.metadata : null }
 })
+
+const imageLoaded = ref(true)
+const onImageLoadError = (): void => {
+  imageLoaded.value = false
+}
 </script>
 
 <template>
@@ -41,7 +46,20 @@ const { data } = await useAsyncData<{ metadata: SiteMetadata | null }>(`embed-${
         {{ data.metadata?.title || url }}
       </p>
 
-      <p class="text-15">{{ urlOrigin }}</p>
+      <div class="flex">
+        <img
+          v-if="imageLoaded"
+          :src="`https://www.google.com/s2/favicons?domain=${encodeURIComponent(url)}&size=64`"
+          :alt="data.metadata?.title || ''"
+          height="16"
+          width="16"
+          class="mr-1"
+          loading="lazy"
+          @error="onImageLoadError"
+        >
+        <p class="text-15">{{ urlOrigin }}</p>
+      </div>
+
     </div>
 
     <div
