@@ -11,8 +11,13 @@ const props = defineProps<{
   url: string
 }>()
 
+const config = useRuntimeConfig()
 const apiDomain = computed(() => {
-  return useRuntimeConfig().apiDomain
+  if (import.meta.dev) {
+    return import.meta.server ? config.apiDomain : config.public.apiDomain
+  }
+
+  return config.apiDomain
 })
 
 const urlOrigin = computed<string>(() => {
