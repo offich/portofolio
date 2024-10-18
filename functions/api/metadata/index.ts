@@ -10,44 +10,62 @@ export type SiteMetadata = {
 }
 
 export const onRequest: PagesFunction = async (context) => {
-  const query = new URL(context.request.url)
-  const url = query.searchParams.get('url')
+  const newResponse = Response.json({ metadata: { url: 'https://www.teamlab.art/jp/e/tokyo/', title: '【公式】チームラボボーダレス, 麻布台ヒルズ, 東京', description: 'チームラボボーダレスは、アートコレクティブ・チームラボの境界のないアート群による「地図のないミュージアム」。アートは、部屋から出て移動し、他の作品と関係し、影響を受け合い、他の作品との境界線がなく、時には混ざり合う。そのような作品群による、境界なく連続する１つの世界。境界のないアートに身体ごと没入し、さまよい、意思のある身体で探索し、他者と共に世界を創り、発見していく。', imageUrl: 'https://team-lab.imagewave.pictures/Yt5eET5oZzm6FBicauQUSY?width=1200&format=jpeg' } })
+  newResponse.headers.set('Access-Control-Allow-Origin', '*')
+  newResponse.headers.set('Access-Control-Max-Age', '86400')
+  return newResponse
 
-  try {
-    const response = await fetch(url,
-      {
-        method: 'get',
-        headers: { 'user-agent': userAgent },
-      })
+  // const query = new URL(context.request.url)
+  // const url = query.searchParams.get('url')
 
-    if (!response.ok) {
-      return Response.json({ metadata: null })
-    }
+  // let metadata: SiteMetadata | null = { url, title: null, description: null, imageUrl: null }
 
-    const html = await response.text()
-    const metadata: SiteMetadata = { url, title: null, description: null, imageUrl: null }
-    const loaded = load(html)
+  // try {
+  //   const response = await fetch(url,
+  //     {
+  //       method: 'get',
+  //       headers: { 'user-agent': userAgent },
+  //     })
 
-    const metaTags = loaded('meta')
+  //   console.log(response)
 
-    for (const meta of metaTags) {
-      const property = meta.attribs.property
+  //   if (!response.ok) {
+  //     metadata = null
 
-      if (property === 'og:title') {
-        metadata.title = meta.attribs.content || null
-      }
+  //     const response = Response.json({ metadata })
+  //     response.headers.set('Access-Control-Allow-Origin', '*')
+  //     response.headers.set('Access-Control-Max-Age', '86400')
+  //     return response
+  //   }
+  //   const html = await response.text()
+  //   const loaded = load(html)
 
-      if (property === 'og:description') {
-        metadata.description = meta.attribs.content || null
-      }
+  //   const metaTags = loaded('meta')
 
-      if (property === 'og:image') {
-        metadata.imageUrl = meta.attribs.content || null
-      }
-    }
+  //   for (const meta of metaTags) {
+  //     const property = meta.attribs.property
 
-    return Response.json({ metadata })
-  } catch {
-    return Response.json({ metadata: null })
-  }
+  //     if (property === 'og:title') {
+  //       metadata.title = meta.attribs.content || null
+  //     }
+
+  //     if (property === 'og:description') {
+  //       metadata.description = meta.attribs.content || null
+  //     }
+
+  //     if (property === 'og:image') {
+  //       metadata.imageUrl = meta.attribs.content || null
+  //     }
+  //   }
+
+  //   const newResponse = Response.json({ metadata: { url: 'https://www.teamlab.art/jp/e/tokyo/', title: '【公式】チームラボボーダレス, 麻布台ヒルズ, 東京', description: 'チームラボボーダレスは、アートコレクティブ・チームラボの境界のないアート群による「地図のないミュージアム」。アートは、部屋から出て移動し、他の作品と関係し、影響を受け合い、他の作品との境界線がなく、時には混ざり合う。そのような作品群による、境界なく連続する１つの世界。境界のないアートに身体ごと没入し、さまよい、意思のある身体で探索し、他者と共に世界を創り、発見していく。', imageUrl: 'https://team-lab.imagewave.pictures/Yt5eET5oZzm6FBicauQUSY?width=1200&format=jpeg' } })
+  //   newResponse.headers.set('Access-Control-Allow-Origin', '*')
+  //   newResponse.headers.set('Access-Control-Max-Age', '86400')
+  //   return newResponse
+  // } catch {
+  //   const response = Response.json({ metadata })
+  //   response.headers.set('Access-Control-Allow-Origin', '*')
+  //   response.headers.set('Access-Control-Max-Age', '86400')
+  //   return response
+  // }
 }
