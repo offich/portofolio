@@ -59,7 +59,9 @@ const hasDatetime = computed(() => {
     v-if="page"
     class="prose prose-primary dark:prose-invert py-6 px-4 max-w-6xl mx-auto"
   >
-    <h1>{{ page.title }}</h1>
+    <h1 class="text-28">
+      {{ page.title }}
+    </h1>
 
     <div class="mb-3">
       <ul
