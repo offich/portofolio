@@ -1,6 +1,6 @@
 ---
-title: Nuxt 3 x Cloudflare Pages x nuxt/content でブログを作りました
-description: Nuxt 3 x Cloudflare Pages x nuxt/content でブログを作りました
+title: offich.me を支える技術
+description: Nuxt 3 x Cloudflare Pages x @nuxt/content で自ブログを作りました
 categories: ['Tech', 'Nuxt.js', 'Cloudflare', 'Tailwindcss']
 publishedAt: '2024-09-26'
 updatedAt: '2024-09-26'
