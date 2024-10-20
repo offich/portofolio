@@ -36,7 +36,7 @@ defineProps<{ query: QueryBuilderParams }>()
           <div class="mb-3 pc:mb-0 mt-2 gap-0 pc:gap-4">
             <ul class="list-none flex flex-wrap not-prose">
               <li
-                v-for="category in content.categories"
+                v-for="category in (content.categories || [])"
                 :key="category"
                 class="mb-1"
               >

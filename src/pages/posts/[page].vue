@@ -4,6 +4,7 @@ import type { QueryBuilderParams } from '@nuxt/content'
 
 import PostList from '~/components/post/PostList.vue'
 import PostPagination from '~/components/post/PostPagination.vue'
+import type { CustomParsedContent } from '~/types/content'
 import { per } from '~~/constant/post'
 
 definePageMeta({
@@ -46,7 +47,7 @@ const query = computed<QueryBuilderParams>(() => {
 })
 
 const fetchAllCount = async (): Promise<number> => {
-  return queryContent().where(
+  return queryContent<CustomParsedContent>().where(
     {
       draft: { $not: true },
     },
