@@ -6,6 +6,7 @@ import { withoutTrailingSlash } from 'ufo'
 import ContentDivider from '~/components/content/ContentDivider.vue'
 import PostSurround from '~/components/post/PostSurround.vue'
 import TableOfPost from '~/components/post/TableOfPost.vue'
+import type { CustomParsedContent } from '~/types/content'
 import { toPathString } from '~/utils/post/category'
 
 definePageMeta({
@@ -18,7 +19,7 @@ const routePath = computed(() => {
 
 const route = useRoute()
 const { data: page } = await useAsyncData(`docs-${route.path}`, () => {
-  return queryContent(routePath.value).findOne()
+  return queryContent<CustomParsedContent>(routePath.value).findOne()
 })
 if (!page.value) {
   await navigateTo('/')
@@ -30,13 +31,13 @@ useSeoMeta({
   ogType: 'article',
   description: page.value?.description,
   ogDescription: page.value?.description,
-  keywords: page.value?.categories.join(', '),
+  keywords: page.value?.categories?.join(', '),
 })
 
 const { data: surround } = await useAsyncData(
   `docs-${routePath.value}-surround`,
   () => {
-    return queryContent()
+    return queryContent<CustomParsedContent>()
       .where({ _extension: 'md', navigation: { $ne: false }, draft: { $not: true } })
       .findSurround(routePath.value)
   },
@@ -66,7 +67,7 @@ const hasDatetime = computed(() => {
         :class="hasDatetime ? 'mb-2 pc:mb-1' : 'mb-0'"
       >
         <li
-          v-for="category in page.categories"
+          v-for="category in (page.categories || [])"
           :key="category"
           class="mb-1 pc:mb-0"
         >

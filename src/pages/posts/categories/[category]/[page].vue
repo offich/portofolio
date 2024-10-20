@@ -4,6 +4,7 @@ import type { QueryBuilderParams } from '@nuxt/content'
 
 import PostList from '~/components/post/PostList.vue'
 import PostPagination from '~/components/post/PostPagination.vue'
+import type { CustomParsedContent } from '~/types/content'
 import { urlParamsCategoryMap, per } from '~~/constant/post'
 
 definePageMeta({
@@ -65,7 +66,7 @@ const query = computed<QueryBuilderParams>(() => {
 })
 
 const fetchAllCountByCategories = async (): Promise<number> => {
-  return queryContent()
+  return queryContent<CustomParsedContent>()
     .where({
       categories: { $contains: cateogryParams.value },
       draft: { $not: true },

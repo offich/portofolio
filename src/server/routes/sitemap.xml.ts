@@ -4,9 +4,10 @@ import { defineEventHandler } from '#imports'
 import { SitemapStream, streamToPromise } from 'sitemap'
 
 import { serverQueryContent } from '#content/server'
+import type { CustomParsedContent } from '~/types/content'
 
 export default defineEventHandler(async (event) => {
-  const docs = await serverQueryContent(event).find()
+  const docs = await serverQueryContent<CustomParsedContent>(event).find()
   const sitemap = new SitemapStream({
     hostname: 'https://offich.me',
     lastmodDateOnly: true,
